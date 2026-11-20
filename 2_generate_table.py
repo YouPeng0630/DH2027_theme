@@ -117,8 +117,15 @@ groups = ["AA", "APA-AA", "LXA", "NA"]
 
 human_relative = human_df[groups].sub(human_df["General"], axis=0)
 web_relative = web_df[groups].sub(web_df["General"], axis=0)
+
+LABELCOLS = ['nature', 'body', 'death', 'love', 'existential', 'identity', 'self', 'beauty', 'america', 'loss', 'animals', 'history', 'memories', 'family', 'writing', 'ancestry', 'thought', 'landscapes', 'war', 'time', 'religion', 'grief', 'violence', 'aging', 'childhood', 'desire', 'night', 'mothers', 'language', 'birds', 'social justice', 'music', 'flowers', 'politics', 'hope', 'heartache', 'fathers', 'gender', 'environment', 'spirituality', 'loneliness', 'oceans', 'dreams', 'survival', 'cities', 'earth', 'despair', 'anxiety', 'weather', 'illness']
+human_relative = human_relative.loc[human_relative.index.isin(LABELCOLS)]
+web_relative = web_relative.loc[web_relative.index.isin(LABELCOLS)]
+
 human_relative_table = make_ranked_table(human_relative)
 web_relative_table = make_ranked_table(web_relative)
+
+
 human_relative_table.to_csv(
     "human_theme_relative.csv", encoding="utf-8-sig", index_label="Rank"
 )
